@@ -5,6 +5,8 @@ from pdf2image import convert_from_path
 
 pdf_file = "example.pdf"
 output_dir = "markdown_output"
+pdf_file = input('What is your pdf file name?\n')    
+output_dir = input('What is your output directory name?\n')    
 
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
