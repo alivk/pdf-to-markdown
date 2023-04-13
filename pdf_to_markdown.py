@@ -13,10 +13,11 @@ if not os.path.exists(output_dir):
 pages = convert_from_path(pdf_file)
 
 for i, page in enumerate(pages):
+    
     # Extract slide title from page using pdftotext command
     title_command = f"pdftotext -f {i+1} -l {i+1} -layout '{pdf_file}' -"
-    title = subprocess.check_output(title_command, shell=True).decode("utf-8")
-    title = f'page-{i+1}-' + re.sub(r'\W+', '-', title.lower().strip()[:20])
+    content = subprocess.check_output(title_command, shell=True).decode("utf-8")
+    title = f'page-{i+1}-' + re.sub(r'\W+', '-', content.lower().strip()[:20])
     
     # Save image to disk
     image_folder = os.path.join(output_dir, f"{title}.assets")
@@ -25,8 +26,6 @@ for i, page in enumerate(pages):
     image_file = os.path.join(image_folder, f"page-{i+1}.png")
     page.save(image_file, "PNG")
 
-
-
     # Generate markdown file content
     markdown_content = f"""# {title}
 ### PPT Slide
@@ -34,6 +33,7 @@ for i, page in enumerate(pages):
 
 ### Speaker Notes
 This is the speaker notes for slide {i+1}.
+{content}
 <!-- NextPage -->
 """
 
