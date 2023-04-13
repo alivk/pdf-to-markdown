@@ -14,6 +14,6 @@ git clone https://github.com/alivk/pdf-to-markdown.git
 
 3. Run the script:
 ```
-python3 ppt_to_markdown.py
+python3 pdf_to_markdown.py
 ```
 The generated markdown files will be saved in the markdown_output folder.
